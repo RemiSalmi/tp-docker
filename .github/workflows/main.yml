@@ -38,7 +38,7 @@ jobs:
         run: ./gradlew check -i -P database.url=postgres/tp_devops
         
       - name: docker image 
-        run: ./gradlew docker
+        run: ./gradlew docker -i
         
       - name: login docker
         env:
