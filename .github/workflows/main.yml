@@ -17,13 +17,12 @@ jobs:
     container: openjdk:8-jdk
     services:
       postgres:
-        image: postgres:10.10
+        image: postgres
         env:
           POSTGRES_USER: tp_devops
           POSTGRES_PASSWORD: tp_devops
           POSTGRES_DB: tp_devops
-        ports:
-          - 5432/tcp
+
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -35,4 +34,4 @@ jobs:
         run: ./gradlew assemble
 
       - name: check the app
-        run: ./gradlew check -p database.url=postgres/tp_devops
+        run: ./gradlew check -i -P database.url=postgres/tp_devops
