@@ -26,12 +26,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - env:
-          DOCKER_HUB: ${{secrets.DOCKER_HUB}}
-          DOCKER_HUB_KEY: ${{secrets.DOCKER_HUB_KEY }}  
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+          
       # Runs a single command using the runners shel
       - name: build the app
         run: ./gradlew assemble
@@ -43,6 +41,9 @@ jobs:
         run: ./gradlew docker
         
       - name: login docker
+        env:
+          DOCKER_HUB: ${{secrets.DOCKER_HUB}}
+          DOCKER_HUB_KEY: ${{secrets.DOCKER_HUB_KEY }}
         run: docker login -u $DOCKER_HUB -p $DOCKER_HUB_KEY
       
       - name: push image
