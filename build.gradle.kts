@@ -69,6 +69,13 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+
+task<Exec>("docker") {
+    workingDir("./")
+    dependsOn("assemble")
+    commandLine("docker", "build", "-t", "remisalmi/tp-devops:${project.version}", ".")
+}
+
 tasks.withType<Wrapper> {
     gradleVersion = "5.6"
 }
