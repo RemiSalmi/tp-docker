@@ -26,6 +26,16 @@ jobs:
   check:
     runs-on : ubuntu-latest
     
+    services:
+      postgres:
+        image: postgres:10.10
+        env:
+          POSTGRES_USER: tp_devops
+          POSTGRES_PASSWORD: tp_devops
+          POSTGRES_DB: tp_devops
+        ports:
+          - 5432/tcp
+    
     steps: 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
