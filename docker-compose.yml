@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: tp_devops
+      POSTGRES_PASSWORD: tp_devops
+      POSTGRES_DB: tp_devops
+  javaapp:
+    image: remisalmi/tp-devops:1.0.0
+    ports:
+      - "8080:8080"
+    environment:
+      DBURL: postgres:5432/tp_devops
+      USER: tp_devops
+      PASS: tp_devops
